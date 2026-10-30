@@ -1,0 +1,242 @@
+:root {
+	color-scheme: light;
+	font-family: "Manrope", sans-serif;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	--ink: #1c2924;
+	--muted: #78827b;
+	--paper: #f2f0e9;
+	--panel: #fbfaf6;
+	--line: #e6e4dc;
+	--green: #245c48;
+	--green-dark: #194533;
+	--coral: #e78668;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	min-width: 320px;
+	min-height: 100vh;
+	margin: 0;
+	display: grid;
+	place-items: center;
+	padding: 28px 18px;
+	color: var(--ink);
+	background-color: var(--paper);
+	background-image: radial-gradient(#d8d8ce 0.7px, transparent 0.7px);
+	background-size: 15px 15px;
+}
+
+button {
+	font: inherit;
+}
+
+.calculator {
+	width: min(100%, 390px);
+	padding: 26px;
+	border: 1px solid rgba(28, 41, 36, 0.08);
+	border-radius: 12px;
+	background: var(--panel);
+	box-shadow: 0 24px 70px rgba(37, 49, 42, 0.12), 0 3px 10px rgba(37, 49, 42, 0.05);
+	animation: arrive 420ms ease-out both;
+}
+
+.calculator-header {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 25px;
+}
+
+.brand-mark {
+	display: grid;
+	width: 40px;
+	height: 40px;
+	place-items: center;
+	border-radius: 9px;
+	color: #fff;
+	background: var(--green);
+	font-size: 23px;
+	font-weight: 500;
+}
+
+.eyebrow {
+	margin: 0 0 2px;
+	color: var(--muted);
+	font-size: 9px;
+	font-weight: 700;
+	letter-spacing: 1.4px;
+}
+
+h1 {
+	margin: 0;
+	font-size: 16px;
+	font-weight: 700;
+}
+
+.status-dot {
+	width: 7px;
+	height: 7px;
+	margin-left: auto;
+	border-radius: 50%;
+	background: #79a88b;
+	box-shadow: 0 0 0 4px #e8f0e9;
+}
+
+.display {
+	display: flex;
+	min-height: 122px;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: flex-end;
+	overflow: hidden;
+	padding: 17px 18px 20px;
+	border: 1px solid var(--line);
+	border-radius: 8px;
+	background: #f5f4ee;
+}
+
+.expression {
+	width: 100%;
+	min-height: 19px;
+	overflow: hidden;
+	margin: 0 0 5px;
+	color: var(--muted);
+	font-family: "DM Mono", monospace;
+	font-size: 12px;
+	text-align: right;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.result {
+	display: block;
+	max-width: 100%;
+	overflow: hidden;
+	color: var(--ink);
+	font-family: "DM Mono", monospace;
+	font-size: clamp(32px, 10vw, 43px);
+	line-height: 1.1;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.keypad {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 10px;
+	margin-top: 16px;
+}
+
+.key {
+	display: grid;
+	min-width: 0;
+	aspect-ratio: 1.28;
+	place-items: center;
+	border: 1px solid transparent;
+	border-radius: 7px;
+	color: var(--ink);
+	background: #eeede7;
+	cursor: pointer;
+	font-family: "DM Mono", monospace;
+	font-size: 19px;
+	transition: transform 110ms ease, background-color 110ms ease, border-color 110ms ease;
+	-webkit-tap-highlight-color: transparent;
+}
+
+.key:hover {
+	border-color: #d7d9d0;
+	background: #e6e6de;
+}
+
+.key:active {
+	transform: scale(0.96);
+}
+
+.key:focus-visible {
+	outline: 3px solid rgba(36, 92, 72, 0.35);
+	outline-offset: 2px;
+}
+
+.key-utility {
+	color: #496255;
+	background: #e5ebe3;
+	font-family: "Manrope", sans-serif;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.key-operator {
+	color: var(--green);
+	background: #e7eee8;
+	font-size: 23px;
+}
+
+.key-operator.is-selected {
+	border-color: var(--green);
+	color: #fff;
+	background: var(--green);
+}
+
+.key-delete {
+	color: #a45b48;
+	background: #f3e8e3;
+	font-family: "Manrope", sans-serif;
+	font-size: 21px;
+}
+
+.key-equals {
+	color: #fff;
+	background: var(--coral);
+	font-size: 23px;
+}
+
+.key-equals:hover {
+	border-color: transparent;
+	background: #d97658;
+}
+
+.keyboard-hint {
+	margin: 18px 0 0;
+	color: var(--muted);
+	font-size: 11px;
+	text-align: center;
+}
+
+.keyboard-hint span {
+	padding: 0 5px;
+	color: var(--coral);
+}
+
+@keyframes arrive {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@media (max-width: 380px) {
+	.calculator {
+		padding: 20px;
+	}
+
+	.keypad {
+		gap: 8px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}
